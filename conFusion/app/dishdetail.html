@@ -1,3 +1,9 @@
+<!-- This is a redo of a previous assignment that has been graded -->
+<!-- I was busy for a few months after taking a hiatus from this course 
+      and I wanted to get up to speed again with this course so have decided to 
+      do all the assignments again, repeating two of them -->
+<!-- David M Gudeman September 12, 2016 -->
+
 <!DOCTYPE html>
 <html lang="en" ng-app="confusionApp">
 
@@ -28,6 +34,7 @@
     <div class="container">
         <div class="row row-content" ng-controller="dishDetailController as dishDetailCtrl">
             <div class="col-xs-12">
+                <!-- Week01 task 1: Use Bootstrap Media object to display dish -->
                 <div class="media">
                 <div class="media-left media-middle">
                     <a href="#">
@@ -44,7 +51,15 @@
               </div>
             </div>
             <div class="col-xs-9 col-xs-offset-1">
-                <p>Put the comments here</p>
+                <!-- Week01 task 3: Provide input field that will order the comments by specified key-->
+                <p><strong>Customer comments</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>Sort by: </small><input type="text" ng-model="dishDetailCtrl.orderBy"></p>
+                    <!-- Week01 task 2: Use Bootstrap blockquote class, date filter iterating over comments using a ng directive --> 
+                    <blockquote ng-repeat="comment in dishDetailCtrl.dish.comments | orderBy:dishDetailCtrl.orderBy">
+                        <p>{{comment.rating}} Stars<p>
+                        <p>{{comment.comment}}<p>
+                        <footer> {{comment.author}}, {{comment.date | date: 'mediumDate'}} </footer>
+                    </blockquote>
             </div>
         </div>
 
@@ -100,6 +115,8 @@
                     };
             
             this.dish = dish;
+            this.orderBy = '';
+
             
         });
 
